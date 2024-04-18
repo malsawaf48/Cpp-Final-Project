@@ -2,17 +2,17 @@
 #include "C:\Users\malsa\OneDrive\Documents\Programming\Personal\Cpp-Final-Project\yourlang.cpp"
 int main(){
     Cipher num;
-    std::cout << num.getValue();
-
-    num = 5;
-    std::cout <<"\n"<< num.getValue();
-
-    num = num + 4;
-    std::cout <<"\n"<< num.getValue();
-
-    Cipher num2;
-    std::cout <<"\n"<< num2.getValue();
-
-    num2 = 3;
-    std::cout <<"\n"<< num2.getValue();
+    std::cout<<"num is: "<<num;
+    num = 3;
+    std::cout<<"\nnum = 3 is: "<<num;
+    num = num + 2;
+    std::cout<<"\nnum = num + 2 is: "<<num;
+    num = 100;
+    std::cout<<"\nnum = 100 is: "<<num;
+    num = num - 20;
+    std::cout<<"\nnum = num - 20 is: "<<num;
+    num = num / 2;
+    std::cout<<"\nnum = num / 2 is: "<<num;
+    num = num * 3;
+    std::cout<<"\nnum = num * 3 is: "<<num;
 };
