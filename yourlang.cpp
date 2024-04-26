@@ -1,83 +1,61 @@
-#include "C:\Users\malsa\OneDrive\Documents\Programming\Personal\Cpp-Final-Project\CPU.cpp"
+#include "CPU.h"
+#include <ostream>
 
 CPU cpu;
 Memory mem;
 
 class Cipher{
     private:
-        int value;
-        int index;
+        IntObject object;
+        
     public:
         Cipher(){
-            value = 0;
-            mem.store(value);
-            index = mem.getIndex();
+            object.setValue(0);
+            mem.store(object);
+            object.setIndex(mem.getIndex());
         }
-        int getValue(){return mem.getItemAt(index);}
 
         int operator=(int newValue){
-            value = newValue;
-            mem.store(newValue);
-            mem.removeAt(index);
-            index = mem.getIndex();
-            return value;
+            object.setValue(newValue);
+            mem.reStore(object.getIndex(), object);
+            return mem.getItemAt(object.getIndex()).getValue();
         }
-        int operator+(int newValue){
-            cpu.load(value, 0);
-            mem.store(newValue);
-            int newIndex = mem.getIndex();
-            cpu.load(newValue, 1);
-            value = cpu.add();
-            mem.store(value);
-            mem.removeAt(newIndex);
-            mem.removeAt(index);
-            index = mem.getIndex();
-            return value;
+        int operator+(int otherValue){
+            IntObject otherObject(otherValue, object.getIndex()+1);
+            mem.store(otherObject);
+            cpu.load(object, 0);
+            cpu.load(otherObject, 1);
+            object.setValue(cpu.addInt());
+            mem.removeAt(otherObject.getIndex());
+            mem.reStore(object.getIndex(), object);
+            return object.getValue();
             cpu.clearReg();
         }
-        int operator-(int newValue){
-            cpu.load(value, 0);
-            mem.store(newValue);
-            int newIndex = mem.getIndex();
-            cpu.load(newValue, 1);
-            value = cpu.subtract();
-            mem.store(value);
-            mem.removeAt(newIndex);
-            mem.removeAt(index);
-            index = mem.getIndex();
-            return value;
-            cpu.clearReg();
-        }
-        int operator/(int newValue){
-            cpu.load(value, 0);
-            mem.store(newValue);
-            int newIndex = mem.getIndex();
-            cpu.load(newValue, 1);
-            value = cpu.divide();
-            mem.store(value);
-            mem.removeAt(newIndex);
-            mem.removeAt(index);
-            index = mem.getIndex();
-            return value;
-            cpu.clearReg();
-        }
-        int operator*(int newValue){
-            cpu.load(value, 0);
-            mem.store(newValue);
-            int newIndex = mem.getIndex();
-            cpu.load(newValue, 1);
-            value = cpu.multiply();
-            mem.store(value);
-            mem.removeAt(newIndex);
-            mem.removeAt(index);
-            index = mem.getIndex();
-            return value;
-            cpu.clearReg();
-        }
-        friend std::ostream& operator<<(std::ostream& os, const Cipher& cipher){
-            os << cipher.value;
+        friend std::ostream& operator<<(std::ostream& os, Cipher& cipher){
+            os << cipher.object.getValue();
             return os;
+        } 
+};
+
+class Hover{
+    private:
+        DoubleObject object;
+        
+    public:
+        Hover(){
+            object.setValue(0.0);
+            mem.store(object);
+            object.setIndex(mem.getIndex());
         }
-        
-        
+
+        int operator=(double newValue){
+            object.setValue(newValue);
+            mem.reStore(object.getIndex(), object);
+            return mem.getItemAt(object.getIndex()).getValue();
+        }
+        friend std::ostream& operator<<(std::ostream& os, Hover& hover){
+            os << hover.object.getValue();
+            return os;
+        } 
+
 };

@@ -1,15 +1,16 @@
 #include <vector>
 
-class MemoryObject{};
+template<typename T>
 
 class Memory{
     private:
-        std::vector<int> memory;
+        std::vector<T> memory;
 
     public:
         Memory(){
+            memory;
         }
-        void store(int newVal){
+        void store(T newVal){
             memory.push_back(newVal);
         }
         int getItemAt(int i){
@@ -18,7 +19,7 @@ class Memory{
         int getIndex(){
             return (memory.size()-1);
         }
-        void reStore(int i, int newVal){
+        void reStore(int i, T newVal){
             memory[i] = newVal;
         }
         void removeAt(int i){
