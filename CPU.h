@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include<string>
 class MemoryObject{
     private:
         int index;
@@ -37,6 +38,39 @@ class DoubleObject : public MemoryObject{
         DoubleObject(){}
         void setValue(double newValue){value = newValue;}
         double getValue(){ return value; }
+};
+class StringObject : public MemoryObject{
+     private:
+        std::string value;
+    public:
+        StringObject(std::string v, int i){
+            value = v;
+            setIndex(i);}
+        StringObject(){}
+        void setValue(std::string newValue){value = newValue;}
+        std::string getValue(){ return value;}
+};
+class BoolObject : public MemoryObject{
+     private:
+        bool value;
+    public:
+        BoolObject(bool v, int i){
+            value = v;
+            setIndex(i);}
+        BoolObject(){}
+        void setValue(bool newValue){value = newValue;}
+        bool getValue(){ return value;}
+};
+class CharObject : public MemoryObject{
+     private:
+        char value;
+    public:
+        CharObject(char v, int i){
+            value = v;
+            setIndex(i);}
+        CharObject(){}
+        void setValue(char newValue){value = newValue;}
+        char getValue(){ return value;}
 };
 
 
@@ -80,7 +114,11 @@ class CPU{
                 DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
                 return obj1->getValue() + obj2->getValue();
             }
-            // Handle case when objects are of different types
+            else if (typeid(*reg[0]) == typeid(CharObject)){
+                CharObject* obj1 = dynamic_cast<CharObject*>(reg[0]);
+                CharObject* obj2 = dynamic_cast<CharObject*>(reg[1]);
+                return obj1->getValue() + obj2->getValue();
+            }
             return static_cast<T>(0);
         }
 
