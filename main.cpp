@@ -3,28 +3,25 @@
 
 int main(){
     Cipher num;
-    std::cout<<"num is: "<<num;
+    std::cout<<"\nnum is: "<<num;
     num = 3;
     std::cout<<"\nnum = 3 is: "<<num;
     num = 300;
     std::cout<<"\nnum = 300 is: "<<num;
 
+    Cipher num2;
+    std::cout<<"\n\nnum2 is: "<<num2;
+    num2 = num;
+    std::cout<<"\nnum2 = num is: "<<num2;
+    num = num + 2;
+    std::cout<<"\nnum = num + 2 is: "<<num;
+
     Hover decimal;
-    std::cout<<"\ndecimal is: "<<decimal;
+    std::cout<<"\n\ndecimal is: "<<decimal;
     decimal = 4.7;
     std::cout<<"\ndecimal = 4.7 is: "<<decimal;
     decimal = 521.123;
     std::cout<<"\ndecimal = 521.123 is: "<<decimal;
-    num = num + 2;
-    std::cout<<"\nnum = num + 2 is: "<<num;
-    /*
-    num = 100;
-    std::cout<<"\nnum = 100 is: "<<num;
-    num = num - 20;
-    std::cout<<"\nnum = num - 20 is: "<<num;
-    num = num / 2;
-    std::cout<<"\nnum = num / 2 is: "<<num;
-    num = num * 3;
-    std::cout<<"\nnum = num * 3 is: "<<num;
-    */
+    decimal = decimal + 20.3;
+    std::cout<<"\ndecimal = decimal + 20.3 is: "<<decimal;
 };
