@@ -226,6 +226,22 @@ class CPU{
                 DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
                 return obj1->getValue() == obj2->getValue();
             }
+            else if (typeid(*reg[0]) == typeid(BoolObject)){
+                BoolObject* obj1 = dynamic_cast<BoolObject*>(reg[0]);
+                BoolObject* obj2 = dynamic_cast<BoolObject*>(reg[1]);
+                return obj1->getValue() == obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(StringObject)){
+                StringObject* obj1 = dynamic_cast<StringObject*>(reg[0]);
+                StringObject* obj2 = dynamic_cast<StringObject*>(reg[1]);
+                return obj1->getValue() == obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(CharObject)){
+                CharObject* obj1 = dynamic_cast<CharObject*>(reg[0]);
+                CharObject* obj2 = dynamic_cast<CharObject*>(reg[1]);
+                return obj1->getValue() == obj2->getValue();
+            }
+
             return static_cast<T>(0);
         }
 

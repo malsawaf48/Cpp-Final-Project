@@ -261,10 +261,26 @@ class Argument{
             mem.store(&object);
             object.setIndex(mem.getIndex());
         }
+        BoolObject getObject(){return object;}
+
         bool operator=(bool newValue){
             object.setValue(newValue);
             mem.reStore(object.getIndex(), &object);
             return dynamic_cast<BoolObject*>(mem.getItemAt(object.getIndex()))->getValue();
+        }
+        bool operator=(Argument newArgument){
+            object.setValue(newArgument.getObject().getValue());
+            mem.reStore(object.getIndex(), &object);
+            return dynamic_cast<BoolObject*>(mem.getItemAt(object.getIndex()))->getValue();
+        }
+        bool operator==(bool otherValue){
+            BoolObject otherObject(otherValue, object.getIndex()+1);
+            mem.store(&otherObject);
+            cpu.load(&object, 0);
+            cpu.load(&otherObject, 1);
+            return cpu.isEqual<bool>();
+            mem.removeAt(otherObject.getIndex());
+            cpu.clearReg();
         }
         friend std::ostream& operator<<(std::ostream& os, Argument& argument){
             os << argument.object.getValue();
@@ -287,10 +303,26 @@ class Chain{
             mem.store(&object);
             object.setIndex(mem.getIndex());
         }
+        StringObject getObject(){return object;}
+
         std::string operator=(std::string newValue){
             object.setValue(newValue);
             mem.reStore(object.getIndex(), &object);
             return dynamic_cast<StringObject*>(mem.getItemAt(object.getIndex()))->getValue();
+        }
+        std::string operator=(Chain newChain){
+            object.setValue(newChain.getObject().getValue());
+            mem.reStore(object.getIndex(), &object);
+            return dynamic_cast<StringObject*>(mem.getItemAt(object.getIndex()))->getValue();
+        }
+        bool operator==(std::string otherValue){
+            StringObject otherObject(otherValue, object.getIndex()+1);
+            mem.store(&otherObject);
+            cpu.load(&object, 0);
+            cpu.load(&otherObject, 1);
+            return cpu.isEqual<bool>();
+            mem.removeAt(otherObject.getIndex());
+            cpu.clearReg();
         }
         friend std::ostream& operator<<(std::ostream& os, Chain& chain){
             os << chain.object.getValue();
@@ -312,10 +344,25 @@ class Figure{
             mem.store(&object);
             object.setIndex(mem.getIndex());
         }
+        CharObject getObject(){return object;}
         char operator=(char newValue){
             object.setValue(newValue);
             mem.reStore(object.getIndex(), &object);
             return dynamic_cast<CharObject*>(mem.getItemAt(object.getIndex()))->getValue();
+        }
+        char operator=(Figure newFigure){
+            object.setValue(newFigure.getObject().getValue());
+            mem.reStore(object.getIndex(), &object);
+            return dynamic_cast<CharObject*>(mem.getItemAt(object.getIndex()))->getValue();
+        }
+        bool operator==(char otherValue){
+            CharObject otherObject(otherValue, object.getIndex()+1);
+            mem.store(&otherObject);
+            cpu.load(&object, 0);
+            cpu.load(&otherObject, 1);
+            return cpu.isEqual<bool>();
+            mem.removeAt(otherObject.getIndex());
+            cpu.clearReg();
         }
         friend std::ostream& operator<<(std::ostream& os, Figure& figure){
             os << figure.object.getValue();
@@ -340,6 +387,24 @@ template<typename T, typename... Args>
 void reveal(T value, Args&&... args) {
     std::cout << value << " ";
     reveal(std::forward<Args>(args)...);//little help from gpt here
+}
+template<typename T>
+T condition(bool condition, T ifTrue, T ifFalse){
+    if(condition){
+        return ifTrue;
+    }
+    else{
+        return ifFalse;
+    }
+}
+
+template <typename Func, typename T>
+void reRun(Func func, T value, int times) {
+    int i =0;
+    while(i < times){
+        func(value);
+        i++;
+    }
 }
 
 
