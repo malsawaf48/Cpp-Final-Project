@@ -114,10 +114,117 @@ class CPU{
                 DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
                 return obj1->getValue() + obj2->getValue();
             }
-            else if (typeid(*reg[0]) == typeid(CharObject)){
-                CharObject* obj1 = dynamic_cast<CharObject*>(reg[0]);
-                CharObject* obj2 = dynamic_cast<CharObject*>(reg[1]);
-                return obj1->getValue() + obj2->getValue();
+            return static_cast<T>(0);
+        }
+        template<typename T>
+        T subtract() {
+            if (typeid(*reg[0]) == typeid(IntObject)) { 
+                IntObject* obj1 = dynamic_cast<IntObject*>(reg[0]);
+                IntObject* obj2 = dynamic_cast<IntObject*>(reg[1]);
+                return obj1->getValue() - obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(DoubleObject)){
+                DoubleObject* obj1 = dynamic_cast<DoubleObject*>(reg[0]);
+                DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
+                return obj1->getValue() - obj2->getValue();
+            }
+            return static_cast<T>(0);
+        }
+        template<typename T>
+        T multiply() {
+            if (typeid(*reg[0]) == typeid(IntObject)) {
+                IntObject* obj1 = dynamic_cast<IntObject*>(reg[0]);
+                IntObject* obj2 = dynamic_cast<IntObject*>(reg[1]);
+                return obj1->getValue() * obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(DoubleObject)){
+                DoubleObject* obj1 = dynamic_cast<DoubleObject*>(reg[0]);
+                DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
+                return obj1->getValue() * obj2->getValue();
+            }
+            return static_cast<T>(0);
+        }
+        template<typename T>
+        T divide() {
+            if (typeid(*reg[0]) == typeid(IntObject)) {
+                IntObject* obj1 = dynamic_cast<IntObject*>(reg[0]);
+                IntObject* obj2 = dynamic_cast<IntObject*>(reg[1]);
+                return obj1->getValue() / obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(DoubleObject)){
+                DoubleObject* obj1 = dynamic_cast<DoubleObject*>(reg[0]);
+                DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
+                return obj1->getValue() / obj2->getValue();
+            }
+            return static_cast<T>(0);
+        }
+         template<typename T>
+        T greater(){
+            if (typeid(*reg[0]) == typeid(IntObject)) {
+                IntObject* obj1 = dynamic_cast<IntObject*>(reg[0]);
+                IntObject* obj2 = dynamic_cast<IntObject*>(reg[1]);
+                return obj1->getValue() > obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(DoubleObject)){
+                DoubleObject* obj1 = dynamic_cast<DoubleObject*>(reg[0]);
+                DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
+                return obj1->getValue() > obj2->getValue();
+            }
+            return static_cast<T>(0);
+        }
+        template<typename T>
+        T greaterEqual(){
+            if (typeid(*reg[0]) == typeid(IntObject)) {
+                IntObject* obj1 = dynamic_cast<IntObject*>(reg[0]);
+                IntObject* obj2 = dynamic_cast<IntObject*>(reg[1]);
+                return obj1->getValue() >= obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(DoubleObject)){
+                DoubleObject* obj1 = dynamic_cast<DoubleObject*>(reg[0]);
+                DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
+                return obj1->getValue() >= obj2->getValue();
+            }
+            return static_cast<T>(0);
+        }
+        template<typename T>
+        T less(){
+            if (typeid(*reg[0]) == typeid(IntObject)) {
+                IntObject* obj1 = dynamic_cast<IntObject*>(reg[0]);
+                IntObject* obj2 = dynamic_cast<IntObject*>(reg[1]);
+                return obj1->getValue() < obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(DoubleObject)){
+                DoubleObject* obj1 = dynamic_cast<DoubleObject*>(reg[0]);
+                DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
+                return obj1->getValue() < obj2->getValue();
+            }
+            return static_cast<T>(0);
+        }
+        template<typename T>
+        T lessEqual(){
+            if (typeid(*reg[0]) == typeid(IntObject)) {
+                IntObject* obj1 = dynamic_cast<IntObject*>(reg[0]);
+                IntObject* obj2 = dynamic_cast<IntObject*>(reg[1]);
+                return obj1->getValue() <= obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(DoubleObject)){
+                DoubleObject* obj1 = dynamic_cast<DoubleObject*>(reg[0]);
+                DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
+                return obj1->getValue() <= obj2->getValue();
+            }
+            return static_cast<T>(0);
+        }
+        template<typename T>
+        T isEqual(){
+            if (typeid(*reg[0]) == typeid(IntObject)) {
+                IntObject* obj1 = dynamic_cast<IntObject*>(reg[0]);
+                IntObject* obj2 = dynamic_cast<IntObject*>(reg[1]);
+                return obj1->getValue() == obj2->getValue();
+            }
+            else if (typeid(*reg[0]) == typeid(DoubleObject)){
+                DoubleObject* obj1 = dynamic_cast<DoubleObject*>(reg[0]);
+                DoubleObject* obj2 = dynamic_cast<DoubleObject*>(reg[1]);
+                return obj1->getValue() == obj2->getValue();
             }
             return static_cast<T>(0);
         }
