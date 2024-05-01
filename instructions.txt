@@ -1,0 +1,72 @@
+Open text file as big as possible for correct format.
+
+Data Types
+
+c++		My version		example
+
+int		Cipher			Cipher x; //defult is 0
+					x = 3;
+
+double		Hover			Hover x; //defult is 0.0
+					x = 4.3;
+
+bool		Argument		Argument x; //defult is true
+					x = false;
+
+string		Chain			Chain x; //defult is ""
+					x = "Hello World";
+
+char		Figure			Figure x; //defult is '0'
+					x = 'B';
+
+
+
+Functions
+
+cout		reveal()		reveal("Hello ", "World"); //Can take any amount of date in any type
+
+
+cin		gain()			gain(x); //x can be any data type
+
+if else		condition()		//takes in (bool, anyType1, anyType2)
+					//if bool is true condition returns anyType1
+					//if bool is false condition returns anyType2
+					num = condition(4 > 5, 100, 200); //in this case num will be 200
+					reveal(condition(2==2, "yes", "no")); //in this case it will output yes
+
+for		reRun()			//takes in(anyType, int)
+					//will output anyType for int amount of times
+					reRun("Hello", 4); //will output Hello repeatedly for 4 times
+					reRun(100, 6); //will ouput 100 repeatedly for 6 times
+
+
+
+Example Program that uses all elements:
+
+int main(){
+    Chain name;
+    Cipher age;
+    Figure gender;
+    Argument canVote;
+    Hover money;
+
+    reveal("Enter your name: ");
+    gain(name);
+
+    reveal("Enter age: ");
+    gain(age);
+    canVote = condition(age >= 18, true, false);
+
+    reveal("\nEnter Gender (M or F): ");
+    gain(gender);
+
+
+    reveal("\nYou are: ",name, "\nAge: ", age, "\nGender: ", gender);
+    reveal(condition(canVote == true, "\nYou are old enough to vote", "\nYou are not old enough to vote"));
+
+    reveal("\nHow much money do you have: $");
+    gain(money);
+
+    reRun(money, 6);
+    
+};

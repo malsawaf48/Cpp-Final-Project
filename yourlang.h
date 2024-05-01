@@ -385,7 +385,7 @@ void reveal() {
 }
 template<typename T, typename... Args>
 void reveal(T value, Args&&... args) {
-    std::cout << value << " ";
+    std::cout << value;
     reveal(std::forward<Args>(args)...);//little help from gpt here
 }
 template<typename T>
@@ -398,11 +398,11 @@ T condition(bool condition, T ifTrue, T ifFalse){
     }
 }
 
-template <typename Func, typename T>
-void reRun(Func func, T value, int times) {
-    int i =0;
+template <typename T>
+void reRun(T value, int times) {
+    int i = 0;
     while(i < times){
-        func(value);
+        reveal(value);
         i++;
     }
 }
